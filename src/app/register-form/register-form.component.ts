@@ -43,12 +43,10 @@ export class RegisterFormComponent {
       if(this.editIndex !== null){
         this.registrationDetails[this.editIndex]=this.registrationForm.value
         this.editIndex = null;
-
       }
       else {
         if(!this.registrationDetails){
-        this.registrationDetails = [];
-
+       this.registrationDetails = [];
       }
       this.registrationDetails.push(this.registrationForm.value)
     }
@@ -60,11 +58,14 @@ export class RegisterFormComponent {
     }
  }
 
- addUser(firstname:string,lastname:string,email:string,phone:string){
-  this.registrationDetails.push(this.registrationForm.value)
- }
+ 
+
+
  onEdit(index:number){
 this.editIndex=index;
 this.registrationForm.setValue(this.registrationDetails[index])
+ }
+ delete(index:number){
+  this.registrationDetails.splice(index,1)
  }
 }
