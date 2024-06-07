@@ -59,9 +59,13 @@
         <td>{{ data.email }}</td>
         <td>{{ data.phone }}</td>
         <td>
-          <button (click)="onEdit(i)">Edit</button>
+          <div class="actions">
+            <button (click)="onEdit(i)">Edit</button>
+            <button (click)="delete(i)">Delete</button>
+          </div>
         </td>
-        <td><button (click)="delete(i)">Delete</button></td>
+
+        
       </tr>
     </tbody>
   </table>
