@@ -11,6 +11,8 @@ export class RegisterFormComponent {
   isBrowser!: boolean;
   isServer!: boolean;
   registrationForm: FormGroup;
+  editIndex: number | null = null;
+
   //regsitrationDetails :[{firstname:string,lastname:string,email:string,phone:string}]
   registrationDetails: any [] = [];
 
@@ -38,16 +40,31 @@ export class RegisterFormComponent {
   }
   onSubmit(){
     if (this.registrationForm.valid) {
-      console.log(this.registrationForm.value);
+      if(this.editIndex !== null){
+        this.registrationDetails[this.editIndex]=this.registrationForm.value
+        this.editIndex = null;
+
+      }
+      else {
+        if(!this.registrationDetails){
+        this.registrationDetails = [];
+
+      }
       this.registrationDetails.push(this.registrationForm.value)
-      console.log(this.registrationDetails)
+    }
+      this.registrationForm.reset();
       // Process the form data
     } else {
       console.log('Form is invalid');
+
     }
  }
 
  addUser(firstname:string,lastname:string,email:string,phone:string){
   this.registrationDetails.push(this.registrationForm.value)
+ }
+ onEdit(index:number){
+this.editIndex=index;
+this.registrationForm.setValue(this.registrationDetails[index])
  }
 }

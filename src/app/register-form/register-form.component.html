@@ -41,6 +41,26 @@
   
     <button type="submit" >Submit</button>
   </form> 
-  <div *ngFor="let register of registrationDetails">
-    <h3>{{register.lastname}}</h3>
-  </div>
+
+  <table *ngIf="registrationDetails">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of registrationDetails; let i = index">
+        <td>{{ data.firstname }}</td>
+        <td>{{ data.lastname }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.phone }}</td>
+        <td>
+          <button (click)="onEdit(i)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
